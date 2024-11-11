@@ -161,9 +161,11 @@ let characterResults = [
 	]
 
 
-let characterBaseURL = 'https://starwars-visualguide.com/assets/img/characters';
-let planetBaseURL = 'https://starwars-visualguide.com/assets/img/planets';
-let vehicleBaseURL = 'https://starwars-visualguide.com/assets/img/vehicles';
+let baseURL = 'https://starwars-visualguide.com/assets/img';
+let characterModifier = '/characters'
+let planetModifier = '/planets'
+let vehicleModifier = '/vehicles'
+
 
 
 export const Home = () => (
@@ -176,21 +178,24 @@ export const Home = () => (
 					<h1>Characters</h1>
 					<CardList 
 						array={characterResults}
-						imageURL={characterBaseURL}
+						imageURL={baseURL + characterModifier}
+                        characterModifier = {characterModifier}
 					/>
 				</div>
 				<div className="my-5">
 					<h1>Planets</h1>
 					<CardList 
 						array={planetResults}
-						imageURL={planetBaseURL}
+						imageURL={baseURL + planetModifier}
+                        planetModifier = {planetModifier}
 					/>
 				</div>
 				<div className="my-5">
 					<h1>Vehicles</h1>
 					<CardList 
 						array={vehicleResults}
-						imageURL={vehicleBaseURL}
+						imageURL={baseURL + vehicleModifier}
+                        vehicleModifier = {vehicleModifier}
 					/>
 				</div>
 			</div>

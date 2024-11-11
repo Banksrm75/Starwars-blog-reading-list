@@ -7,7 +7,7 @@ const CardList = ({array, imageURL}) => {
 
     return (
         <>
-            <div className="d-flex overflow-scroll">
+            <div className="d-flex gap-3 overflow-auto"> 
                 {
                     array.map( item => {
                         return(
