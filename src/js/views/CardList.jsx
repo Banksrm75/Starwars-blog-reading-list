@@ -1,27 +1,30 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+
+import { Context } from "../store/appContext.js"
+
 import Card from "./Card.jsx";
 
 
 const CardList = ({array, imageURL, modifier}) => {
 
-    console.log(array);
+    const {store, actions} = useContext(Context);
+
+    
 
     return (
         <>
             <div className="d-flex gap-3 overflow-auto"> 
-                {
-                    array.map( item => {
-                        return(
-                            <Card 
-                                key={item.uid}
-                                id={item.uid}
-                                name={item.name}
-                                imageURL={imageURL}
-                                modifier = {modifier}
-                            />
-                        );
-                    })
-                }
+                {store.contacts && store.contacts.map( item => {
+                    return(
+                        <Card 
+                            key={item.uid}
+                            id={item.uid}
+                            name={item.name}
+                            imageURL={imageURL}
+                            modifier = {modifier}
+                        />
+                    );
+                })}
             </div>
          
         </>
