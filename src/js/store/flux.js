@@ -25,7 +25,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			favorites: [
 				
-			]
 			],
 			modifier: ""
 		},

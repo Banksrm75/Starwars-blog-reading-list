@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Card.jsx";
 
-const CardList = ({array, imageURL}) => {
+
 const CardList = ({array, imageURL, modifier}) => {
 
     console.log(array);
