@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
+			
 			characters: [
 
 			],
@@ -25,6 +26,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			favorites: [
 				
 			]
+			],
+			modifier: ""
 		},
 		actions: {
 			// // Use getActions to call a function within a fuction
@@ -51,6 +54,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	setStore({ demo: demo });
 			getCharacters: () => {
 				fetch('https://www.swapi.tech/api/people')
+				modifier = '/characters'
+				fetch(`https://www.swapi.tech/api/${modifier}`)
 				.then (response => {
 					if(!response.ok) {
 						throw Error("Error trying to get info")
@@ -64,6 +69,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getVehicles: () => {
 				fetch('https://www.swapi.tech/api/vehicles')
+				modifier = '/vehicles'
+				fetch(`https://www.swapi.tech/api/${modifier}`)
 				.then (response => {
 					if(!response.ok) {
 						throw Error("Error trying to get info")
@@ -77,6 +84,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getPlanets: () => {
 				fetch('https://www.swapi.tech/api/planets')
+				modifier = '/planets'
+				fetch(`https://www.swapi.tech/api/${modifier}`)
 				.then (response => {
 					if(!response.ok) {
 						throw Error("Error trying to get info")
