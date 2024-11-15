@@ -1,33 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 
+import { Context } from '../store/appContext';
 const style = {
     width: "20rem",
 }
 
-const Card = ({ id, name, imageURL }) => {
+const CharacterCard = ({ id, name, imageURL, modifier }) => {
+    const {store, actions} = useContext(Context);
 
     return (
         <>
             <div className="card me-3 p-0" style={style}>
                 <img
-                    src={ 
-                        name === "Tatooine"
-                        ?
-                        "https://upload.wikimedia.org/wikipedia/en/6/6d/Tatooine_%28fictional_desert_planet%29.jpg"
-                        :
-                        `${imageURL}/${id}.jpg`
-                    } 
+                    src={`${imageURL}/${id}.jpg`} 
                     className="card-img-top border" alt="..." 
                 />
                 <div className="card-body">
-                <h5 className="card-title">{name}</h5>
-                                         {/*state={id: id, modifier: modifier} */}
-                <Link to={"/detailedView"}                                            > 
-                            <button className="btn btn-primary">
-                                Learn More
-                            </button>
-                            {/* onClick={ () => actions.getMoreInfo(id, name, imageURL, modifier) } */}
+                <h5 className="card-title">{name}</h5> 
+                
+                <Link to={`/detailedView_Character/${id}`}  > 
+                    <button className="btn btn-primary">
+                        Learn More
+                    </button>
                 </Link>
                     
                 <button className="add-to-favorites-btn">
@@ -48,4 +43,4 @@ const Card = ({ id, name, imageURL }) => {
     );
 }
 
-export default Card;
+export default CharacterCard;
