@@ -31,9 +31,7 @@ const injectContext = PassedComponent => {
 			 * state.actions.loadSomeData(); <---- calling this function from the flux.js actions
 			 *
 			 **/
-			state.actions.getCharacters();
-			state.actions.getVehicles();
-			state.actions.getPlanets();
+			state.actions.loadStarWars();
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,

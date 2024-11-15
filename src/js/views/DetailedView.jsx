@@ -4,10 +4,10 @@ import { Context } from "../store/appContext.js"
 
 const DetailedView = ({ id, name, imageURL }) => {
 
+    const {store, actions} = useContext(Context);
+
     let exampleData = {
-
-        // const {store, actions} = useContext(Context);
-
+        
         "message": "ok",
         "result": {
             "properties": {
