@@ -31,6 +31,7 @@ export const Home = () => {
                     <div className="my-5">
                         <h1>Characters</h1>
                         <CardListCharacter 
+                            key={store.uid}
                             array={store.characters}
                             imageURL={baseImageURL + characterModifier}
                             modifier = {characterModifier}
@@ -39,6 +40,7 @@ export const Home = () => {
                     <div className="my-5">
                         <h1>Planets</h1>
                         <CardListPlanet
+                            key={store.uid}
                             array={store.planets}
                             imageURL={baseImageURL + planetModifier}
                             modifier = {planetModifier}
@@ -47,6 +49,7 @@ export const Home = () => {
                     <div className="my-5">
                         <h1>Vehicles</h1>
                         <CardListVehicle
+                            key={store.uid}
                             array={store.vehicles}
                             imageURL={baseImageURL + vehicleModifier}
                             modifier = {vehicleModifier}

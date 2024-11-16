@@ -1,0 +1,9 @@
+.dropdown-menu {
+    width: 300px;
+    display: inline-block;
+}
+
+.delete-favorite {
+    padding-left: 10px;
+    font-size: 50px;
+}

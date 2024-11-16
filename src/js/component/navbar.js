@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 
 import { Context } from '../store/appContext';
+import "../../styles/navbar.css";
 
 export const Navbar = () => {
 
@@ -15,8 +16,6 @@ export const Navbar = () => {
 				</svg>
 			</span>
 		
-			<div className="ml-auto">
-				
 			<div className="dropdown">
 				<button className="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 					Favorites
@@ -28,7 +27,7 @@ export const Navbar = () => {
 				</ul>
 			</div>
 				
-			</div>
+			<div></div>
 		</nav>
 	);
 };
