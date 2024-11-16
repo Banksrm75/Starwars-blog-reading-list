@@ -69,65 +69,56 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addToFavorites: ( faveId, faveName, faveImageURL, modifier ) => {
+				
+				let currentFavorites = getStore().favorites;
+				let inTheList = false;
 
-				let fave = {
-					key: faveId,
-					id: faveId,
-					name: faveName,
-					imageURL: faveImageURL,
-					modifier: modifier
+				for (let i = 0; i < currentFavorites.length; i++) {
+					if (currentFavorites[i].name === faveName) {
+						inTheList = true;
+					}
 				}
 
-				console.log("Adding to favorites")
-				let currentFavorites = getStore().favorites;
-				let updatedFavorites = [...currentFavorites, fave]
-				setStore( {favorites: updatedFavorites} )	
-			},
-
-			displayFavorites: ( ) => {
-
-				let showFavorites = getStore().favorites;
-				console.log(showFavorites);	
-
-
-				let displayEachFavorite = showFavorites.map( (item, index) => 
-
-					{
-						return(
-							<li key={index}
-								onClick={ () => {getActions().deleteFave(index)} } 
-							>
-								
-								<a className="dropdown-item " href="#">{item.name}
-									<svg xmlns="http://www.w3.org/2000/svg"
-										width="25" 
-										height="25" 
-										fill="currentColor" 
-										className="bi bi-trash3-fill delete-favorite" 
-										viewBox="0 0 16 16"
-										
-									>
-										<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"
-										/>
-									</svg>
-								</a>
-								
-							</li>);
+				if (inTheList === false) {
+					
+					let fave = {
+						key: faveId,
+						id: faveId,
+						name: faveName,
+						imageURL: faveImageURL,
+						modifier: modifier
 					}
-				);
-				return(displayEachFavorite);
+	
+					let currentFavorites = getStore().favorites;
+					let updatedFavorites = [...currentFavorites, fave]
+					setStore( {favorites: updatedFavorites} )	
+				}
 			},
 
-			deleteFave: (DeleteIndex) => {
+			displayFavorites: () => {
+                let showFavorites = getStore().favorites;
+                return showFavorites.map((item, index) => (
+                    <li key={index} onClick={() => {getActions().deleteFave(item.id)}}>
+                        <a className="dropdown-item" href="#">
+                            {item.name}
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                width="25"
+                                height="25"
+                                fill="currentColor"
+                                className="bi bi-trash3-fill delete-favorite"
+                                viewBox="0 0 16 16">
+                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                            </svg>
+                        </a>
+                    </li>
+                ));
+            },
 
-				let currentFavorites = getStore().favorites;
-
-				let updatedFavorites = currentFavorites.filter( (item, index) => {
-					item[index] !== item[DeleteIndex]
-				})
-				getStore().favorites
-				setStore( {favorites: updatedFavorites} )
-			},
+			deleteFave: (faveId) => {
+                let currentFavorites = getStore().favorites;
+                let updatedFavorites = currentFavorites.filter(item => item.id !== faveId);
+                setStore({ favorites: updatedFavorites });
+            },
 
 			getSingleCharacter: characterID => {
 				let modifier = '/people'
